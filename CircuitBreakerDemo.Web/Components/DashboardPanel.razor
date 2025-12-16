@@ -1,0 +1,68 @@
+@using Polly
+@using Radzen
+@using Radzen.Blazor
+
+<div class="dashboard-panel">
+    <div class="row">
+        <div class="col-6">
+            <RadzenCard>
+                <div class="text-center">
+                    <div class="fw-bold">Circuit State</div>
+                    <div class="fs-4 @GetStateColorClass()">@CircuitState</div>
+                </div>
+            </RadzenCard>
+        </div>
+        <div class="col-6">
+            <RadzenCard>
+                <div class="text-center">
+                    <div class="fw-bold">Active Path</div>
+                    <div class="fs-4">@(ActivePath ?? "N/A")</div>
+                </div>
+            </RadzenCard>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12">
+            <RadzenCard>
+                <div class="text-center">
+                    <div class="fw-bold">Success Rate</div>
+                    <!-- Simple progress bar instead of gauge -->
+                    <RadzenProgressBar Value="@SuccessRate" Max="100" ShowValue="true" Style="margin: 20px 0;" />
+                    <h3 class="@GetSuccessRateColorClass()">@SuccessRate.ToString("N1")%</h3>
+                    <div class="text-muted">(@SuccessCount / @TotalRequests requests)</div>
+                </div>
+            </RadzenCard>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter] public string CircuitState { get; set; } = "Closed";
+    [Parameter] public int SuccessCount { get; set; }
+    [Parameter] public int FailureCount { get; set; }
+    [Parameter] public int TotalRequests { get; set; }
+    [Parameter] public string? ActivePath { get; set; }
+
+    private double SuccessRate => TotalRequests > 0 ? ((double)SuccessCount / TotalRequests) * 100 : 0;
+
+    private string GetStateColorClass()
+    {
+        return CircuitState switch
+        {
+            "Closed" => "text-success",
+            "Open" => "text-danger",
+            "HalfOpen" => "text-warning",
+            _ => "text-secondary"
+        };
+    }
+
+    private string GetSuccessRateColorClass()
+    {
+        return SuccessRate switch
+        {
+            >= 90 => "text-success",
+            >= 70 => "text-warning",
+            _ => "text-danger"
+        };
+    }
+}

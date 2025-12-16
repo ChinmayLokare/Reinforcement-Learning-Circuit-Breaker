@@ -1,0 +1,95 @@
+@page "/"
+@using CircuitBreakerDemo.Core.Services
+@using CircuitBreakerDemo.Core.ReinforcementLearning
+@using CircuitBreakerDemo.Web.Components
+@using Polly
+@using Polly.CircuitBreaker
+@using Radzen
+@using Radzen.Blazor
+
+<PageTitle>RL Circuit Breaker Demo</PageTitle>
+
+<div class="container-fluid @(IsInPresentationMode ? "presentation-mode" : "")">
+    <h3 class="my-3">RL-Based Circuit Breaker Demo</h3>
+    
+    <!-- CONTROL PANEL -->
+    <div class="row mb-3">
+        <div class="col">
+            <RadzenCard>
+                <div class="d-flex align-items-center gap-4 mb-3">
+                    <RadzenButton 
+                        Text="@(IsSimulationRunning ? "Stop Simulation" : "Start Simulation")" 
+                        Click="ToggleSimulation" 
+                        ButtonStyle="@(IsSimulationRunning ? ButtonStyle.Warning : ButtonStyle.Success)" 
+                        Disabled="@IsScenarioRunning"/>
+
+                    <RadzenButton 
+                        Text="Reset Learning" 
+                        Click="ResetSimulation" 
+                        ButtonStyle="ButtonStyle.Light"
+                        Disabled="@(IsSimulationRunning || IsScenarioRunning)" />
+
+                    <RadzenButton 
+                        Text="Export Metrics" 
+                        Icon="download"
+                        Click="ExportMetrics" 
+                        ButtonStyle="ButtonStyle.Info"
+                        Disabled="@(IsSimulationRunning || IsScenarioRunning)" />
+
+                    <div>
+                        <RadzenLabel Text="Failure Rate" />
+                        <RadzenSlider 
+                            @bind-Value="@FailureRate" 
+                            Min="0" Max="1" Step="0.05" 
+                            Style="width: 200px;" 
+                            Disabled="@IsScenarioRunning"/>
+                        <RadzenLabel Text="@($"{FailureRate:P0}")" />
+                    </div>
+
+                     <div class="ms-auto d-flex align-items-center gap-2">
+                        <RadzenCheckBox @bind-Value="@IsInPresentationMode" />
+                        <RadzenLabel Text="Presentation Mode" />
+                    </div>
+                </div>
+
+                <h5 class="mt-3">Automated Scenarios</h5>
+                <div class="d-flex align-items-center gap-3">
+                    <RadzenButton Text="Gradual Degradation" Click="@(() => RunScenario(1))" Disabled="@IsSimulationRunning" ButtonStyle="ButtonStyle.Primary" />
+                    <RadzenButton Text="Sudden Outage" Click="@(() => RunScenario(2))" Disabled="@IsSimulationRunning" ButtonStyle="ButtonStyle.Primary" />
+                    <RadzenButton Text="Intermittent Failure" Click="@(() => RunScenario(3))" Disabled="@IsSimulationRunning" ButtonStyle="ButtonStyle.Primary" />
+                </div>
+                
+                @if (!string.IsNullOrEmpty(ScenarioNarrative))
+                {
+                    <RadzenAlert class="mt-3" AlertStyle="AlertStyle.Info" Variant="Variant.Flat" Shade="Shade.Lighter">
+                        @ScenarioNarrative
+                    </RadzenAlert>
+                }
+            </RadzenCard>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <RadzenCard>
+                <h4 class="mb-3">Static Circuit Breaker</h4>
+                <DashboardPanel CircuitState="@StaticCircuitState.ToString()" SuccessCount="@StaticSuccess" FailureCount="@StaticFailure" TotalRequests="@TotalRequests" />
+            </RadzenCard>
+        </div>
+        <div class="col-md-6">
+            <RadzenCard>
+                <h4 class="mb-3">Reinforcement Learning CB</h4>
+                <DashboardPanel CircuitState="@RlCircuitState.ToString()" SuccessCount="@RlSuccess" FailureCount="@RlFailure" TotalRequests="@TotalRequests" ActivePath="@RlActivePath.ToString()" />
+            </RadzenCard>
+        </div>
+    </div>
+    
+    <div class="row mt-3">
+        <div class="col">
+            <RadzenCard>
+                <h4 class="mb-3">Q-Table Heatmap</h4>
+                <QTableVisualizer QTable="@RlQTable" CurrentStateIndex="@CurrentStateIndex" />
+            </RadzenCard>
+        </div>
+    </div>
+</div>

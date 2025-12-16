@@ -1,0 +1,61 @@
+@using CircuitBreakerDemo.Core.ReinforcementLearning
+
+@if (QTable is not null)
+{
+    <div style="overflow-x: auto; font-size: 0.8rem;">
+        <table class="table table-bordered table-sm text-center">
+            <thead>
+                <tr>
+                    <th>State #</th>
+                    @foreach (var actionName in Enum.GetNames(typeof(RLAction)))
+                    {
+                        <th>@actionName</th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < QTable.GetLength(0); i++)
+                {
+                    <tr class="@(i == CurrentStateIndex ? "table-primary" : "")">
+                        <td>@i</td>
+                        @for (int j = 0; j < QTable.GetLength(1); j++)
+                        {
+                            <td style="background-color: @GetColorForValue(QTable[i, j])">
+                                @QTable[i, j].ToString("F2")
+                            </td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <p>Q-Table data is not available.</p>
+}
+
+
+@code {
+    [Parameter] public double[,]? QTable { get; set; }
+    [Parameter] public int CurrentStateIndex { get; set; }
+
+    // This helper function maps a Q-value to a color for the heatmap.
+    private string GetColorForValue(double value)
+    {
+        // Clamp values for better color representation
+        var clampedValue = Math.Clamp(value, -20, 20);
+
+        if (clampedValue == 0) return "#FFFFFF"; // White for neutral
+
+        // Map from -20..20 to 0..1
+        var normalized = (clampedValue + 20) / 40.0;
+
+        // Simple Red-to-Green gradient
+        var red = (int)(255 * (1 - normalized));
+        var green = (int)(255 * normalized);
+        var blue = 0;
+
+        return $"rgb({red}, {green}, {blue})";
+    }
+}

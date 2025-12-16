@@ -1,0 +1,12 @@
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\bin\Debug\net9.0\CircuitBreakerDemo.Core.deps.json
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\bin\Debug\net9.0\CircuitBreakerDemo.Core.dll
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\bin\Debug\net9.0\CircuitBreakerDemo.Core.pdb
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\obj\Debug\net9.0\CircuitBreakerDemo.Core.csproj.AssemblyReference.cache
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\obj\Debug\net9.0\CircuitBreakerDemo.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\obj\Debug\net9.0\CircuitBreakerDemo.Core.AssemblyInfoInputs.cache
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\obj\Debug\net9.0\CircuitBreakerDemo.Core.AssemblyInfo.cs
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\obj\Debug\net9.0\CircuitBreakerDemo.Core.csproj.CoreCompileInputs.cache
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\obj\Debug\net9.0\CircuitBreakerDemo.Core.dll
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\obj\Debug\net9.0\refint\CircuitBreakerDemo.Core.dll
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\obj\Debug\net9.0\CircuitBreakerDemo.Core.pdb
+C:\Users\CHINMAY\Desktop\RLCircuitBreakerDemo\CircuitBreakerDemo.Core\obj\Debug\net9.0\ref\CircuitBreakerDemo.Core.dll
