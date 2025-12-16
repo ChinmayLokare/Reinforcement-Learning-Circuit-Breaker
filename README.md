@@ -22,7 +22,7 @@ The application is designed using Clean Architecture principles with a clear sep
 
 🛠️ Technology Stack
 
-Platform: .NET 8
+Platform: .NET 9
 
 Frontend: Blazor WebAssembly
 
@@ -63,7 +63,7 @@ Presentation Mode: Increases font sizes for better visibility during presentatio
 🏃 How to Run the Application
 Prerequisites
 
-.NET 8 SDK
+.NET 9 SDK
 
 A modern web browser (e.g., Chrome, Firefox, Edge)
 
