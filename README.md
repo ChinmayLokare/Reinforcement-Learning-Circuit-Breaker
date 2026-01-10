@@ -22,17 +22,25 @@ The goal of this project is to demonstrate that an adaptive, learning-based appr
 The application is designed using Clean Architecture principles with a clear separation of concerns across four main layers:
 
 ---
-## 📊 UI Layer (Blazor WASM): An interactive dashboard for real-time visualization of metrics, the Q-Table heatmap, and for controlling the simulation via manual controls or automated scenarios.
+## 📊 UI Layer (Blazor WASM)
+
+An interactive dashboard for real-time visualization of metrics, the Q-Table heatmap, and for controlling the simulation via manual controls or automated scenarios.
 
 ---
-## 🔧 Service Layer (.NET): Orchestrates the simulation, contains the implementations for both the static (baseline) and RL (adaptive) circuit breakers, and includes a central MetricsService. It uses the Polly library for the underlying circuit breaker mechanics.
+## 🔧 Service Layer (.NET)
+
+Orchestrates the simulation, contains the implementations for both the static (baseline) and RL (adaptive) circuit breakers, and includes a central MetricsService. It uses the Polly library for the underlying circuit breaker mechanics.
 
 ---
 
-## 🧠 Reinforcement Learning Layer (.NET): The "brain" of the application. It contains a from-scratch implementation of a Q-learning agent, including the Q-Table, state discretization logic, and the learning algorithm (Bellman equation).
+## 🧠 Reinforcement Learning Layer (.NET)
+
+The "brain" of the application. It contains a from-scratch implementation of a Q-learning agent, including the Q-Table, state discretization logic, and the learning algorithm (Bellman equation).
 
 ---
-## 🌐 Downstream Services Layer (.NET): Simulates the environment with two mock services: a fast but unreliable PrimaryService and a slower but highly stable BackupService.
+## 🌐 Downstream Services Layer (.NET)
+
+Simulates the environment with two mock services: a fast but unreliable PrimaryService and a slower but highly stable BackupService.
 
 ---
 ## 🛠️ Technology Stack
