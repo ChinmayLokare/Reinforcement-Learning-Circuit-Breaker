@@ -14,7 +14,8 @@ Frontend: https://reinforcement-learning-circuit-breake.netlify.app/
 
 ## 🎯 Project Goal
 
-The goal of this project is to demonstrate that an adaptive, learning-based approach to resilience can significantly outperform traditional, static circuit breakers in dynamic and unpredictable failure scenarios. This is achieved by building a system that requires zero manual configuration and learns optimal strategies through experience.
+The goal of this project is to demonstrate that an adaptive, learning-based approach to resilience can significantly outperform traditional, static circuit breakers in dynamic and unpredictable failure scenarios, This is achieved by building a system that requires zero manual configuration and learns optimal strategies through experience.
+
 ---
 
 ## 🏗️ System Architecture
